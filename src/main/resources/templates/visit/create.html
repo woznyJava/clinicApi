@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container">
+
+<h3 class="text-center">DODAJ WIZYTE</h3>
+
+
+<form method="post" action="/visits/create">
+
+    <div class="input-group mb-3">
+
+    <select name="id_doctor" class="form-select" required>
+
+        <option th:each="doctor : ${doctors}" th:value="${doctor.getId_doctor()}" th:text="${doctor.getName() + ' ' + doctor.getLastName()}"></option>
+    </select></br></br>
+
+    <select name="id_patient" class="form-select" required>
+
+        <option th:each="patient : ${patients}" th:value="${patient.getId_patient()}" th:text="${patient.getName() + ' ' + patient.getLastName()}"></option>
+    </select></br></br>
+
+    <input id="dateinput" type="datetime-local" name="date" required></br>
+
+    <button type="submit" class="btn btn-primary">ZAPISZ</button>
+    </div>
+</form>
+
+    <a href="/visits" type="button" class="btn btn-warning">Wróc</a>
+
+</div>
+
+<script type="text/javascript">
+    let dateInput = document.getElementById("dateinput");
+    var today = new Date()
+    var pattern = today.toISOString().split(".")[0]
+
+    dateInput.min = pattern.slice(0, -3)
+    dateInput.value = pattern.slice(0, -3)
+</script>
+
+</body>
+</html>
+<script>
+</script>

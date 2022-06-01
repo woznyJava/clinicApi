@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+</head>
+
+
+<body>
+
+<style>
+    body {
+
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+        background-color: #666;
+        padding: 30px;
+        text-align: center;
+        font-size: 35px;
+        color: white;
+    }
+
+    article {
+        text-align: center;
+        padding: 20px;
+        width: 70%;
+        background-color: #f1f1f1;
+    }
+
+
+</style>
+
+<div>
+
+<div class="row">
+
+<header>
+
+
+<h3>WIZYTY</h3>
+    <h5 align="center">
+        <a href="/visits/create">
+            <input type="submit" value="dodaj wizyte " class="btn btn-primary">
+        </a>
+    </h5>
+    <a href="/" type="buttn" class="btn btn-warning">Wróc</a>
+
+</header>
+
+</div>
+
+<div clas="row" style="height: 25px;">
+
+</div>
+
+<div class="row">
+
+
+    <article class="w-100">
+    <table class="table border">
+        <thead>
+        <tr>
+            <th>Details</th>
+            <th>ID Lekarza</th>
+            <th>ID Pacjenta</th>
+            <th>Data</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="visit : ${visits}">
+
+                <td>
+                    <form method="POST" th:action="@{/visits/details}">
+                        <input type="hidden"  name="id_visit" th:value="${visit.id_visit}" />
+                        <button type="submit" class="btn btn-warning">Show</button>
+                    </form>
+                </td>
+
+            <td th:text="${visit.doctor.getName() + ' ' + visit.doctor.getLastName() }"></td>
+            <td th:text="${visit.patient.getName() + ' ' + visit.patient.getLastName() }"></td>
+            <td th:text="${ visit.date.getDayOfMonth() + ' ' + visit.date.getMonth() + ' ' +
+              visit.date.getYear() + ' Time:' + visit.date.getHour() + ':' + visit.date.getMinute() }"></td>
+        </tr>
+        </tbody>
+    </table>
+    </article>
+
+
+
+
+</div>
+
+</div>
+
+</body>
+
+
+
+</html>
+<script>
+</script>

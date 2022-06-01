@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+        background-color: #666;
+        padding: 30px;
+        text-align: center;
+        font-size: 35px;
+        color: white;
+    }
+
+    article {
+        text-align: center;
+        padding: 20px;
+        width: 70%;
+        background-color: #f1f1f1;
+    }
+
+    @media (max-width: 600px) {
+        nav, article {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+</style>
+
+<body>
+
+<div>
+
+<header>
+    <h3>PATIENCI</h3>
+    <h5 align="center"><a href="/patients/create"><input type="submit" value="dodaj pacjenta " class="btn btn-primary"></a></h5>
+    <a href="/" type="buttn" class="btn btn-warning">Wróc</a>
+</header>
+
+    <div clas="row" style="height: 25px;">
+
+    </div>
+
+<form method="post" action="/visits/create">
+    <article class="w-100">
+    <table class="table border">
+        <thead>
+        <tr>
+            <th>Nazwisko</th>
+            <th>Imie</th>
+            <th>PESEL</th>
+            <th>Data Urodzenia</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.lastName}"></td>
+            <td th:text="${patient.name}"></td>
+            <td th:text="${patient.pesel}"></td>
+            <td th:text="${patient.dateOfBirth}"></td>
+        </tr>
+        </tbody>
+    </table>
+    </article>
+</form>
+
+</div>
+
+    </body>
+
+</html>
+<script>
+</script>
